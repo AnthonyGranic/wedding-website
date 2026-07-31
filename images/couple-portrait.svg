@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="grad-portrait" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6efe4" />
+      <stop offset="100%" stop-color="#e6cfa4" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#grad-portrait)" />
+
+  <g transform="translate(300,250)">
+    <rect x="-70" y="-42" width="140" height="84" rx="14" fill="none" stroke="#b08d57" stroke-width="6" />
+    <rect x="-21" y="-58" width="42" height="18" rx="4" fill="none" stroke="#b08d57" stroke-width="6" />
+    <circle cx="0" cy="3" r="26" fill="#f6efe4" stroke="#b08d57" stroke-width="6" />
+    <circle cx="0" cy="3" r="13" fill="#d9c19f" />
+  </g>
+
+  <text x="300" y="380" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="600" fill="#3a3530">Anthony &amp; Clariza</text>
+  <text x="300" y="415" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="17" letter-spacing="1.5" fill="#6b6258">COUPLE PORTRAIT</text>
+</svg>
