@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>Clariza &amp; Anthony</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,7 +11,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="style.css?v=35" />
+  <link rel="stylesheet" href="style.css?v=7" />
 </head>
 <body>
   <div class="bg-decor" aria-hidden="true"></div>
@@ -32,7 +33,7 @@
       <h1 class="hero-names">
         <span class="name-part">Clariza &amp; Anthony</span>
       </h1>
-      <p class="hero-date">May 22, 2027 &middot; Burlington, Ontario</p>
+      <p class="hero-date">05 &middot; 22 &middot; 2027</p>
     </div>
     <a class="scroll-indicator" href="#photos" aria-label="Scroll down to the photo gallery">
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -65,10 +66,10 @@
   <main>
     <section class="section save-date-note" aria-labelledby="save-date-heading">
       <h2 class="section-title" id="save-date-heading">Save the Date</h2>
-      <div class="divider" aria-hidden="true">&#10047;</div>
+      <div class="divider" aria-hidden="true"></div>
       <time class="save-date-display" datetime="2027-05-22">
         <span>May</span>
-        <strong>22</strong>
+        <strong><span class="day-num">22</span></strong>
         <span>2027</span>
       </time>
       <p class="section-text">
@@ -80,7 +81,7 @@
     <!-- Venue section hidden for now — remove hidden to show again -->
     <section class="section venue-section" id="venue" aria-labelledby="venue-heading" hidden>
       <h2 class="section-title" id="venue-heading">Venue</h2>
-      <div class="divider" aria-hidden="true">&#10047;</div>
+      <div class="divider" aria-hidden="true"></div>
       <div class="venue-banner-wrap">
         <img
           src="images/venue.avif"
@@ -113,7 +114,7 @@
 
     <section class="section travel-section" id="travel">
       <h2 class="section-title">Travel &amp; Where to Stay</h2>
-      <div class="divider" aria-hidden="true">&#10047;</div>
+      <div class="divider" aria-hidden="true"></div>
       <p class="section-text travel-intro">
         We are so grateful you are making the trip to celebrate with us in
         Burlington. We recommend booking flights early.
@@ -136,34 +137,35 @@
         </article>
       </div>
       <div class="hotel-list">
-        <h3>Recommended Hotels</h3>
+        <h3>Hotel Blocks</h3>
         <ul>
           <li>
             <div class="hotel-details">
               <strong>The Pearle Hotel &amp; Spa</strong>
               <span>3 Elizabeth St, Burlington, Ontario</span>
             </div>
-            <a class="hotel-button" href="https://thepearlehotel.ca/accommodations/" target="_blank" rel="noopener noreferrer">
-              View Hotel
-            </a>
-          </li>
-          <li>
-            <div class="hotel-details">
-              <strong>The Waterfront Hotel Downtown Burlington</strong>
-              <span>2020 Lakeshore Road, Burlington, Ontario</span>
+            <div class="hotel-buttons">
+              <a class="hotel-button" href="https://thepearlehotel.ca/accommodations/" target="_blank" rel="noopener noreferrer">
+                View Hotel
+              </a>
+              <span class="hotel-button hotel-button-disabled" aria-disabled="true">
+                Hotel Block Coming Soon
+              </span>
             </div>
-            <a class="hotel-button" href="https://www.waterfronthotelburlington.com/" target="_blank" rel="noopener noreferrer">
-              View Hotel
-            </a>
           </li>
           <li>
             <div class="hotel-details">
               <strong>Courtyard by Marriott Burlington</strong>
               <span>1110 Burloak Drive, Burlington, Ontario</span>
             </div>
-            <a class="hotel-button" href="https://www.marriott.com/en-us/hotels/yhmbu-courtyard-burlington/overview/" target="_blank" rel="noopener noreferrer">
-              View Hotel
-            </a>
+            <div class="hotel-buttons">
+              <a class="hotel-button" href="https://www.marriott.com/en-us/hotels/yhmbu-courtyard-burlington/overview/" target="_blank" rel="noopener noreferrer">
+                View Hotel
+              </a>
+              <span class="hotel-button hotel-button-disabled" aria-disabled="true">
+                Hotel Block Coming Soon
+              </span>
+            </div>
           </li>
         </ul>
       </div>
@@ -191,7 +193,7 @@
 
     <section class="section faq-section" id="questions">
       <h2 class="section-title">Questions &amp; Answers</h2>
-      <div class="divider" aria-hidden="true">&#10047;</div>
+      <div class="divider" aria-hidden="true"></div>
       <div class="faq-list">
         <details>
           <summary>When will I receive my formal invitation?</summary>
