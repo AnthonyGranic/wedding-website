@@ -217,15 +217,12 @@ body {
 }
 
 .hero-names .amp {
-  font-family: var(--serif);
-  font-style: italic;
   color: var(--accent);
-  padding: 0 0.1em;
 }
 
 .hero-date {
-  font-family: "Times New Roman", Times, serif;
-  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.4vw, 2rem);
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1119,7 +1116,7 @@ body {
   height: 2rem;
   display: grid;
   place-items: center;
-  color: #482117;
+  color: var(--accent);
   font-family: var(--sans);
   font-size: 1.4rem;
   font-weight: 300;
