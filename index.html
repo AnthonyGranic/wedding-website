@@ -11,7 +11,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="style.css?v=13" />
+  <link rel="stylesheet" href="style.css?v=14" />
 </head>
 <body>
   <div class="bg-decor" aria-hidden="true"></div>
@@ -142,7 +142,7 @@
           <li>
             <div class="hotel-details">
               <strong>The Pearle Hotel &amp; Spa</strong>
-              <span>3 Elizabeth St, Burlington, Ontario</span>
+              <span>3 Elizabeth Street, Burlington, Ontario</span>
             </div>
             <div class="hotel-buttons">
               <a class="hotel-button" href="https://thepearlehotel.ca/accommodations/" target="_blank" rel="noopener noreferrer">
@@ -346,6 +346,126 @@
           }
         });
       });
+
+      const marquee = document.querySelector(".marquee");
+      const marqueeTrack = marquee && marquee.querySelector(".marquee-track");
+
+      if (marquee && marqueeTrack && window.PointerEvent) {
+        // One group's width; the track holds two identical groups, so wrapping
+        // the offset at that distance makes the loop seamless.
+        let loopWidth = 0;
+        // Matches the 40s CSS keyframe duration for one group.
+        const autoSpeed = -1 / 40;
+        let offset = 0;
+        let velocity = 0;
+        let dragging = false;
+        let pointerId = null;
+        let startX = 0;
+        let startOffset = 0;
+        let lastX = 0;
+        let lastMoveTime = 0;
+        let paused = false;
+        let lastFrame = 0;
+
+        const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+        const measure = () => {
+          loopWidth = marqueeTrack.scrollWidth / 2;
+        };
+
+        const wrap = (value) => {
+          if (!loopWidth) return value;
+          return ((value % loopWidth) + loopWidth) % loopWidth;
+        };
+
+        const render = () => {
+          marqueeTrack.style.transform = "translateX(" + (wrap(offset) - loopWidth) + "px)";
+        };
+
+        const frame = (time) => {
+          const delta = lastFrame ? Math.min(time - lastFrame, 50) : 0;
+          lastFrame = time;
+
+          if (!dragging) {
+            if (Math.abs(velocity) > 0.02) {
+              // Momentum from the throw, easing back into the constant drift.
+              offset += velocity * delta;
+              velocity *= Math.pow(0.94, delta / 16.67);
+            } else {
+              velocity = 0;
+              if (!paused && !reduceMotion) {
+                offset += autoSpeed * loopWidth * (delta / 1000);
+              }
+            }
+          }
+
+          render();
+          requestAnimationFrame(frame);
+        };
+
+        marquee.addEventListener("pointerdown", (event) => {
+          if (event.button !== 0 && event.pointerType === "mouse") return;
+          dragging = true;
+          pointerId = event.pointerId;
+          startX = event.clientX;
+          lastX = event.clientX;
+          lastMoveTime = event.timeStamp;
+          startOffset = offset;
+          velocity = 0;
+          marquee.classList.add("is-dragging");
+          marquee.setPointerCapture(pointerId);
+        });
+
+        marquee.addEventListener("pointermove", (event) => {
+          if (!dragging || event.pointerId !== pointerId) return;
+          offset = startOffset + (event.clientX - startX);
+
+          const elapsed = event.timeStamp - lastMoveTime;
+          if (elapsed > 0) {
+            velocity = (event.clientX - lastX) / elapsed;
+          }
+          lastX = event.clientX;
+          lastMoveTime = event.timeStamp;
+        });
+
+        const endDrag = (event) => {
+          if (!dragging || (event && event.pointerId !== pointerId)) return;
+          dragging = false;
+          marquee.classList.remove("is-dragging");
+          if (pointerId !== null && marquee.hasPointerCapture(pointerId)) {
+            marquee.releasePointerCapture(pointerId);
+          }
+          pointerId = null;
+
+          // A stale velocity from a long pause before release would fling it.
+          if (event && event.timeStamp - lastMoveTime > 80) velocity = 0;
+        };
+
+        marquee.addEventListener("pointerup", endDrag);
+        marquee.addEventListener("pointercancel", endDrag);
+        marquee.addEventListener("dragstart", (event) => event.preventDefault());
+
+        if (finePointer) {
+          marquee.addEventListener("pointerenter", () => {
+            paused = true;
+          });
+          marquee.addEventListener("pointerleave", () => {
+            paused = false;
+          });
+        }
+
+        window.addEventListener("resize", measure);
+        marqueeTrack.querySelectorAll("img").forEach((img) => {
+          img.setAttribute("draggable", "false");
+          if (!img.complete) img.addEventListener("load", measure, { once: true });
+        });
+
+        marquee.classList.add("is-draggable");
+        measure();
+        offset = loopWidth;
+        render();
+        requestAnimationFrame(frame);
+      }
     })();
   </script>
 </body>

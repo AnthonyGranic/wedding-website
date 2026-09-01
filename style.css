@@ -340,6 +340,23 @@ body {
   padding: 2rem 0;
 }
 
+/* Drag support is JS-driven; without it the CSS keyframes still run. */
+.marquee.is-draggable {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.marquee.is-dragging {
+  cursor: grabbing;
+}
+
+.marquee.is-draggable .marquee-track {
+  animation: none;
+  will-change: transform;
+}
+
 .marquee-track {
   display: flex;
   width: max-content;
@@ -361,6 +378,7 @@ body {
 }
 
 .marquee-group img {
+  -webkit-user-drag: none;
   width: 340px;
   height: 480px;
   object-fit: cover;
